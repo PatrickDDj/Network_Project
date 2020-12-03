@@ -1,14 +1,33 @@
 //
 //  main.c
-//  Network_Project
+//  20185697_final_project
 //
 //  Created by PatrickDD on 2020/12/3.
 //
 
 #include <stdio.h>
+//#include "configuration.h"
+#include "network_layer.h"
+//#include "datalink_layer.c"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
-    return 0;
+
+int main(){
+    byte data[] = {'M','e','s','s','a','g','e', ':', ' ','D', 'D', ' ', 'i', 's', ' ', 'S', 'm', 'a', 'r', 't'};
+    
+    send_in_network_layer(IP_ADDR_SENDER, IP_ADDR_RECEIVER, UDP, data, 20);
+    
+    byte res[DATA_MAX_SIZE];
+    receive_in_network_layer(res);
+    printf("%s\n", res);
+    
+    
+    
+//    FILE *file = fopen("temp.bin", "w");
+//    byte *frame[FRAME_MAX_SIZE];
+//    unsigned short len = create_frame(MAC_ADDR_SENDER, MAC_ADDR_RECEIVER, 20, data, 20, frame);
+//    send_frame(frame, len, file);
+//    fclose(file);
+//
+//    FILE *file1 = fopen("temp.bin", "r");
+//    receive_frame(file1);
 }
