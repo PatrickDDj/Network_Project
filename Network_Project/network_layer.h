@@ -258,6 +258,9 @@ static void receive_in_network_layer(byte *buf){
     }
     fclose(temp);
     
+    FILE *clear = fopen("temp.bin", "w");
+    fclose(clear);
+    
 }
 
 
