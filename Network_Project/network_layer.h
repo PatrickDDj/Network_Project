@@ -10,7 +10,7 @@
 #include "datalink_layer.h"
 #include <string.h>
 #include <stdlib.h>
-typedef unsigned char byte;
+//typedef unsigned char byte;
 
 
 struct ip_package_s
@@ -240,11 +240,16 @@ static void receive_in_network_layer(byte *buf){
     
     byte payload[PAYLOAD_MAX_SIZE];
     int payload_len;
+    int cur = 0;
+    int data_len;
     while(1){
         payload_len = receive_frame(temp, payload);
         if(payload_len){
             package = unserialize_ip_package(payload);
-            strcat(buf, package->data);
+//            strcat(buf, package->data);
+            data_len = get_total_length(package->total_length)-IHL;
+            memcpy(buf+cur, package->data, data_len);
+            cur += data_len;
 //            print_ip_package(package);
         }
         else{

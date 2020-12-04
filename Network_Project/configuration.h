@@ -12,6 +12,8 @@
 //
 //#endif /* configuration_h */
 
+
+
 #define VERSION 4   //ipv4
 #define IHL 5
 #define PACKAGE_MAX_SIZE 65535
@@ -27,8 +29,17 @@
 #define FRAME_MAX_SIZE 1536
 #define PAYLOAD_MAX_SIZE 1500
 
+#define DHL 8
+#define DATAGRAM_MAX_SIZE PACKAGE_MAX_SIZE - 4 * IHL
+
+#define DATAGRAM_DATA_MAX_SIZE DATAGRAM_MAX_SIZE - DHL
+
 
 typedef unsigned char byte;
+
+
+static byte PORT_SENDER[2] = {1, 0};    //256
+static byte PORT_RECEIVER[2] = {1, 1};  //257
 
 static byte IDENTIFICATION[2] = {'D', 'D'};
 
