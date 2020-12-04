@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D60954F125792142003F8386 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = D60954F025792142003F8386 /* main.c */; };
+		D61E3DA6257A743300128D0C /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = D61E3DA5257A743300128D0C /* Makefile */; };
 		D621A13E257A222900C9DCE5 /* transport_layer.h in Sources */ = {isa = PBXBuildFile; fileRef = D621A13D257A222900C9DCE5 /* transport_layer.h */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,10 @@
 		D60954EE25792142003F8386 /* datalink_layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datalink_layer.h; sourceTree = "<group>"; };
 		D60954EF25792142003F8386 /* network_layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = network_layer.h; sourceTree = "<group>"; };
 		D60954F025792142003F8386 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		D61E3DA4257A743300128D0C /* temp.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = temp.bin; sourceTree = "<group>"; };
+		D61E3DA5257A743300128D0C /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		D61E3DA8257A750F00128D0C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D61E3DA9257A750F00128D0C /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		D621A13D257A222900C9DCE5 /* transport_layer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = transport_layer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,6 +51,8 @@
 		D60954D825792119003F8386 = {
 			isa = PBXGroup;
 			children = (
+				D61E3DA9257A750F00128D0C /* 1.png */,
+				D61E3DA8257A750F00128D0C /* README.md */,
 				D60954E325792119003F8386 /* Network_Project */,
 				D60954E225792119003F8386 /* Products */,
 			);
@@ -62,6 +69,8 @@
 		D60954E325792119003F8386 /* Network_Project */ = {
 			isa = PBXGroup;
 			children = (
+				D61E3DA5257A743300128D0C /* Makefile */,
+				D61E3DA4257A743300128D0C /* temp.bin */,
 				D60954ED25792142003F8386 /* configuration.h */,
 				D60954EE25792142003F8386 /* datalink_layer.h */,
 				D60954F025792142003F8386 /* main.c */,
@@ -127,6 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D61E3DA6257A743300128D0C /* Makefile in Sources */,
 				D60954F125792142003F8386 /* main.c in Sources */,
 				D621A13E257A222900C9DCE5 /* transport_layer.h in Sources */,
 			);
