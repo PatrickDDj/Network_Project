@@ -7,6 +7,8 @@
 
 #include <stdio.h>
 #include "transport_layer.h"
+//#include "network_layer.h"
+//#include "datalink_layer.h"
 
 
 //int main(){
@@ -38,6 +40,8 @@ int main(){
     byte buf[DATAGRAM_MAX_SIZE];
 //
     receive_in_transport_layer(buf);
+    
+    printf("%s\n", buf+DHL);
 //    UDP_datagram *udp_datagram = create_datagram(PORT_SENDER, PORT_RECEIVER, data, 21);
 ////    print_UDP_datagram(udp_datagram);
 //

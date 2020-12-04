@@ -1,5 +1,5 @@
 //
-//  transport_layer.c
+//  transport_layer.h
 //  Network_Project
 //
 //  Created by PatrickDD on 2020/12/4.
@@ -45,7 +45,7 @@ static void print_UDP_datagram(UDP_datagram *udp_datagram){
     printf("[INFO] Source Port : %d\n", get_port(udp_datagram->src_port));
     printf("[INFO] Destination Port : %d\n", get_port(udp_datagram->des_port));
     printf("[INFO] Data : %s\n", udp_datagram->data);
-    printf("- - - - - - - - - -\n");
+    printf("- - - - - - - - - -\n\n");
 }
 
 static unsigned short serialize_UDP_datagram(UDP_datagram *udp_datagram, byte* buf){
@@ -83,6 +83,12 @@ static UDP_datagram* unserialize_UDP_datagram(byte *buf){
 
 static void send_in_transport_layer(byte *src_port, byte *des_port, byte *data, unsigned short len){
     UDP_datagram *udp_datagram = create_datagram(src_port, des_port, data, len);
+    // printf("----------\n");
+    // printf("[INFO] UDP Datagram sent\n");
+    
+    // print_UDP_datagram(udp_datagram);
+
+
     byte buf[DATAGRAM_MAX_SIZE];
     
     unsigned short datagram_len = serialize_UDP_datagram(udp_datagram, buf);
@@ -91,12 +97,20 @@ static void send_in_transport_layer(byte *src_port, byte *des_port, byte *data, 
 }
 
 
-static void receive_in_transport_layer(byte *buf){
+static unsigned short receive_in_transport_layer(byte *buf){
     receive_in_network_layer(buf);
     
     UDP_datagram *udp_datagram = unserialize_UDP_datagram(buf);
     
-    print_UDP_datagram(udp_datagram);
+    if(get_datagram_length(udp_datagram->total_length) == 0){
+        return 0;
+    }
+    // printf("----------\n");
+    // printf("[INFO] UDP Datagram received\n");
+    
+    
+    // print_UDP_datagram(udp_datagram);
+    return 1;
 }
 
 
