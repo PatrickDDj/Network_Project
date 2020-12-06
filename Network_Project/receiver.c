@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include "transport_layer.h"
 
 int main(){
@@ -10,5 +11,6 @@ int main(){
         if(receive_in_transport_layer(buf)){
             printf("[INFO] Data Received : %s\n", buf + DHL);
         }
+        sleep(1);
     }
 }
