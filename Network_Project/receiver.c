@@ -9,7 +9,8 @@ int main(){
     while(1){
         memset(buf, 0, sizeof(buf));
         if(receive_in_transport_layer(buf)){
-            printf("[INFO] Data Received : %s\n", buf + DHL);
+            printf("[INFO] %s", get_time());
+            printf("[INFO] Data Received : %s\n\n", buf + DHL);
         }
         sleep(1);
     }

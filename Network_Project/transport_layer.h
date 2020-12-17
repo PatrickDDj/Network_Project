@@ -9,23 +9,27 @@
 
 
 struct UDP_datagrame_s{
+    //header
     byte src_port[2], des_port[2];
     byte total_length[2], checksum[2];
     
+    //data
     byte data[DATAGRAM_DATA_MAX_SIZE];
 };
 
 typedef struct UDP_datagrame_s UDP_datagram;
 
+//get_datagram_length : return datagram's length
 static unsigned short get_datagram_length(byte *a){
     return (a[1] << 8) + a[0];
 }
 
+//get_port : return sender/receiver port
 static unsigned short get_port(byte *port){
     return (port[0] << 8) + port[1];
 }
 
-
+//create_datagram : return the datagram based on necessary parameters
 static UDP_datagram* create_datagram(byte *src_port, byte *des_port, byte *data, unsigned short len){
     UDP_datagram *udp_datagram = (UDP_datagram *) malloc(sizeof(UDP_datagram));
     
@@ -39,6 +43,7 @@ static UDP_datagram* create_datagram(byte *src_port, byte *des_port, byte *data,
     return udp_datagram;
 }
 
+//print_UDP_datagram : output datagram information
 static void print_UDP_datagram(UDP_datagram *udp_datagram){
     printf("[UDP Datagram]\n");
     printf("[INFO] Total Length : %d\n", get_datagram_length(udp_datagram->total_length));
@@ -48,6 +53,7 @@ static void print_UDP_datagram(UDP_datagram *udp_datagram){
     printf("- - - - - - - - - -\n\n");
 }
 
+//serialize_UDP_datagram : serialize datagram, fill the buffer, return the length
 static unsigned short serialize_UDP_datagram(UDP_datagram *udp_datagram, byte* buf){
     memcpy(&buf[0], udp_datagram->src_port, 2);
     memcpy(&buf[2], udp_datagram->des_port, 2);
@@ -62,9 +68,9 @@ static unsigned short serialize_UDP_datagram(UDP_datagram *udp_datagram, byte* b
     return total_length;
 }
 
+//unserialize_UDP_datagram : unserialize datagram, return the datagram based on buffer received
 static UDP_datagram* unserialize_UDP_datagram(byte *buf){
     byte src_port[2], des_port[2];
-//    byte data[DATAGRAM_MAX_SIZE];
     
     memcpy(src_port, &buf[0], 2);
     memcpy(des_port, &buf[2], 2);
@@ -85,9 +91,7 @@ static void send_in_transport_layer(byte *src_port, byte *des_port, byte *data, 
     UDP_datagram *udp_datagram = create_datagram(src_port, des_port, data, len);
     // printf("----------\n");
     // printf("[INFO] UDP Datagram sent\n");
-    
     // print_UDP_datagram(udp_datagram);
-
 
     byte buf[DATAGRAM_MAX_SIZE];
     
@@ -99,7 +103,6 @@ static void send_in_transport_layer(byte *src_port, byte *des_port, byte *data, 
 
 static unsigned short receive_in_transport_layer(byte *buf){
     receive_in_network_layer(buf);
-    
     UDP_datagram *udp_datagram = unserialize_UDP_datagram(buf);
     
     if(get_datagram_length(udp_datagram->total_length) == 0){
@@ -107,8 +110,6 @@ static unsigned short receive_in_transport_layer(byte *buf){
     }
     // printf("----------\n");
     // printf("[INFO] UDP Datagram received\n");
-    
-    
     // print_UDP_datagram(udp_datagram);
     return 1;
 }
