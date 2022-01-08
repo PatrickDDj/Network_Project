@@ -10,6 +10,9 @@
 //#include "network_layer.h"
 //#include "datalink_layer.h"
 
+#include <unistd.h>
+
+
 
 //int main(){
 //    byte data[] = {'M','e','s','s','a','g','e', '-', '-','D', 'D', ' ', 'i', 's', ' ', 'S', 'm', 'a', 'r', 't'};
@@ -49,5 +52,11 @@ int main(){
 //    unsigned short len = serialize_UDP_datagram(udp_datagram, buf);
 //
 //    print_UDP_datagram(unserialize_UDP_datagram(buf));
+    
+//    char buffer[256];
+//    char *val = getcwd(buffer, sizeof(buffer));
+//    if (val) {
+//        printf("%s\n", buffer);
+//    }
 }
 
